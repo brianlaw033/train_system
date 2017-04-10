@@ -1,0 +1,18 @@
+<div class='col-xs-12'>
+  <a href="/admin"><button class='btn btn-primary'>Back</button></a>
+</div>
+
+<h1><%= @station.name %></h1>
+
+<div>
+  <% if @station.trains().any?() %>
+    <ul>
+      <% @station.trains().each() do |train| %>
+        <li><%= train[:id] %></li>
+        <li><%= train[:arrival_time] %></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>There are no trains yet!</p>
+  <% end %>
+</div>

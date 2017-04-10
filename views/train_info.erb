@@ -1,0 +1,38 @@
+<div class='col-xs-12'>
+  <a href="/admin"><button class='btn btn-primary'>Back</button></a>
+    <h1>Train No.<%= @train.id %></h1>
+</div>
+
+
+<div class='col-sm-6'>
+  <% if @train.stations().any?() %>
+    <ul>
+      <% @train.stations().each() do |station| %>
+        <li><%= station[:name] %></li>
+        <li><%= station[:arrival_time] %></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>There are no stations yet!</p>
+  <% end %>
+</div>
+
+<div class='col-sm-6'>
+  <% if @stations.any?() %>
+    <form action="/trains/<%= @train.id %>" method="post">
+      <input type="hidden" name="_method" value="patch">
+
+      <% @stations.each() do |station| %>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" name="station_ids[]" value="<%= station.id() %>"><%= station.name() %>
+          </label>
+            <input type='time' name='arrival_time[]' />
+        </div>
+
+      <% end %>
+
+      <button class='btn btn-success' type="submit">Add Stations</button>
+    </form>
+  <% end %>
+</div>

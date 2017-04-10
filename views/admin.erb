@@ -1,0 +1,39 @@
+<div style='padding-bottom: 20x;'>
+  <a href="/"><button class='btn btn-primary'>Back</button></a>
+  <a href="/admin/new_train"><button class='btn btn-primary'>New Train</button></a>
+  <a href="/admin/new_station"><button class='btn btn-primary'>New Station</button></a>
+</div>
+
+<div class='panel panel-primary'>
+  <div class="panel-heading">
+    <h3 class="panel-title">List of Trains</h3>
+  </div>
+  <div class="panel-body">
+    <% if @trains.any?() %>
+      <ul>
+        <% @trains.each do |train| %>
+          <li><a href="/trains/<%= train.id() %>"># <%= train.id() %></a></li>
+        <% end %>
+      </ul>
+    <% else %>
+      <h3>None</h3>
+    <% end %>
+  </div>
+</div>
+
+<div class='panel panel-primary'>
+  <div class="panel-heading">
+    <h3 class="panel-title">List of Stations</h3>
+  </div>
+  <div class="panel-body">
+    <% if @stations.any?() %>
+      <ul>
+        <% @stations.each do |station| %>
+          <li><a href="/stations/<%= station.id() %>"><%= station.name() %></a></li>
+        <% end %>
+      </ul>
+    <% else %>
+      <h3>None</h3>
+    <% end %>
+  </div>
+</div>
